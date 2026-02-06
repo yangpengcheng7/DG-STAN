@@ -1,0 +1,31 @@
+# DG-STAN requirements (paper-aligned: Python 3.10+, PyTorch 2.x)
+
+# NOTE:
+# We recommend installing PyTorch separately according to your CUDA/CPU setup:
+# https://pytorch.org/get-started/locally/
+# Example (CUDA 12.1):
+#   pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+
+numpy>=1.23
+scipy>=1.9
+pandas>=1.5
+
+# deep learning / utilities
+tqdm>=4.64
+pyyaml>=6.0
+
+# metrics / training helpers
+scikit-learn>=1.1
+
+# plotting / visualization (for figure and graph visualization scripts)
+matplotlib>=3.6
+seaborn>=0.12
+
+# optional: if you export figures with nicer styles
+# scienceplots>=2.1
+
+# logging / experiment management (optional but common)
+tensorboard>=2.12
+
+# if your scripts save/load serialized objects
+joblib>=1.2
