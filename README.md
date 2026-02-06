@@ -2,7 +2,7 @@
 
 This repository provides an implementation of **DG-STAN**, a spatio-temporal graph neural network (STGNN) for traffic forecasting. DG-STAN is designed to better model **time-varying spatial dependencies** and **multi-scale temporal patterns** in traffic data.
 
-**Core contributions (paper-aligned):**
+**Core contributions :**
 - **Dynamic graph generation** from traffic states to capture time-varying spatial relations.
 - **Static–dynamic fusion with node-pair-wise gating** to combine topology priors and learned dynamic relations.
 - **Multi-scale temporal convolution** with kernel sizes **3 / 5 / 11** to capture short-/mid-/long-range temporal patterns within the input window.
@@ -12,7 +12,7 @@ The paper evaluates DG-STAN on **PeMS04**, **PeMS08** (traffic flow), and **METR
 
 ---
 
-## 1. Method Summary (from the paper)
+## 1. Method Summary
 
 ### 1.1 Static Graph Construction
 A static adjacency matrix is constructed from sensor distances using a Gaussian kernel with thresholding, then symmetrized to enforce bidirectional consistency.
@@ -59,7 +59,7 @@ Traffic forecasting is typically reported using:
 
 ---
 
-## 3. Repository Structure (Current)
+## 3. Repository Structure 
 
 This repository is organized as a script-based project (most files are in the root directory):
 
@@ -83,6 +83,7 @@ DG-STAN/
   ├── FINAL_ANALYSIS_REPORT.md           # final analysis report
   ├── staeformer_train.log               # training log (optional)
   └── README.md
+```
 4. Data Layout
 If datasets are included in this repository, we recommend placing them under:
 
