@@ -1,84 +1,49 @@
 # DG-STAN: A Dynamic Graph Spatio-Temporal Attention Network for Traffic Flow Prediction
 
-This repository contains the implementation of **DG-STAN**, a spatio-temporal graph neural network (STGNN) for traffic forecasting.  
-DG-STAN improves prediction accuracy by combining:
+This repository provides the implementation of **DG-STAN**, a spatio-temporal graph neural network (STGNN) for traffic forecasting.  
+DG-STAN combines:
+- Dynamic graph generation (traffic-state-based adjacency)
+- Static–dynamic graph fusion with node-pair-wise gating
+- Multi-scale temporal convolution (kernel sizes **3, 5, 11**)
+- Global (joint) spatio-temporal attention
 
-- **Dynamic graph generation** (traffic-state-based adjacency)
-- **Static–dynamic graph fusion with node-pair-wise gating**
-- **Multi-scale temporal convolution** (kernel sizes **3, 5, 11**)
-- **Global (joint) spatio-temporal attention**
-
-The model is evaluated on **PeMS04**, **PeMS08** (traffic flow), and **METR-LA** (traffic speed), with prediction horizons of **3/6/12 steps** (15/30/60 minutes at 5-min intervals).
-
----
-
-## 1. Method Summary
-
-### 1.1 Static Graph Construction
-A static adjacency matrix is constructed from sensor distances using a Gaussian kernel with thresholding, then symmetrized to enforce bidirectional consistency.
-
-### 1.2 Dynamic Graph Generation
-For each input window, DG-STAN generates a **dynamic adjacency** based on node feature similarity after learnable projections, reflecting time-varying traffic relations.
-
-### 1.3 Graph Gating Fusion (Static + Dynamic)
-DG-STAN fuses static and dynamic graphs with a **node-pair-wise gating matrix** `G` computed by an MLP:
-- MLP: `Linear(2→16) → ReLU → Linear(16→1) → Sigmoid`
-- Fused adjacency: `A_fused = G ⊙ A + (1 − G) ⊙ A_dyn`
-
-### 1.4 Multi-Scale Temporal Convolution
-Three parallel temporal convolution branches with kernel sizes:
-- `K1 = 3`, `K2 = 5`, `K3 = 11`
-
-They capture short-term fluctuations, periodic/medium-term patterns, and longer dependencies within the input window.  
-A learnable fusion mechanism weights different temporal scales.
-
-### 1.5 Global Spatio-Temporal Attention
-DG-STAN applies multi-head attention across:
-- **Nodes (spatial attention)** per time step
-- **Time (temporal attention)** per node  
-Then fuses both streams with residual connections to strengthen global spatio-temporal interactions.
+The paper evaluates DG-STAN on **PeMS04**, **PeMS08** (traffic flow) and **METR-LA** (traffic speed), with prediction horizons **3/6/12 steps** (15/30/60 minutes at 5-min intervals).
 
 ---
 
-## 2. Datasets
+## 1. Directory Layout
 
-Benchmarks used in the paper:
-- **PeMS04**: traffic flow (5-min interval)
-- **PeMS08**: traffic flow (5-min interval)
-- **METR-LA**: traffic speed (5-min interval)
+Recommended structure:
 
-Input/Output setting (paper):
-- Input window: **12 time steps** (1 hour)
-- Prediction horizon: **3 / 6 / 12 steps** (15 / 30 / 60 minutes)
+DG-STAN/
+├── data/ # datasets (optional if you upload data)
+│ ├── PeMS04/
+│ ├── PeMS08/
+│ └── METR-LA/
+├── checkpoints/ # saved models (optional)
+├── logs/ # training logs (optional)
+├── *.py # source code
+└── README.md
 
----
-
-## 3. Environment
-
-Paper-reported environment:
-- Python 3.10
-- PyTorch 2.2
-- (Paper runs on Ubuntu + RTX 3090; Windows is also supported with path adjustments)
+### Using a custom data path
+If you store datasets elsewhere, please set the dataset path through script arguments or configuration variables.
 
 ---
 
-## 4. Local Paths (Your Current Setup)
+## 2. Environment
 
-- Code (this repo):
-  `F:\BaiduNetdiskDownload\other_models\code`
+- Python 3.10+
+- PyTorch 2.x
 
-- Data (local, do NOT recommend uploading to GitHub):
-  `F:\BaiduNetdiskDownload\other_models\data`
-
-> Tips: Keep datasets outside the repo and set dataset path in scripts/configs accordingly.
+(Adjust as needed for your platform.)
 
 ---
 
-## 5. Running (Example)
+## 3. Running (Example)
 
-Please check the scripts in this repo for arguments and dataset path settings. Typical workflow:
+Please check each script for arguments and dataset path settings. A typical workflow:
 
-1. Prepare datasets under your local data directory
+1. Prepare datasets under `./data/`
 2. Train:
    - `train_dgstan_multi_horizon.py`
 3. Evaluate / collect results:
@@ -89,9 +54,9 @@ Please check the scripts in this repo for arguments and dataset path settings. T
 
 ---
 
-## 6. Notes on Reproducibility (Paper Settings)
+## 4. Paper-Consistent Settings (Key)
 
-Key hyperparameters in the paper:
+Common settings in the paper include:
 - Hidden dimension: 64
 - Attention heads: 4
 - Dropout: 0.1
@@ -102,7 +67,7 @@ Key hyperparameters in the paper:
 
 ---
 
-## 7. Citation
+## 5. Citation
 
 If you use this code, please cite the paper:
 
@@ -110,6 +75,6 @@ If you use this code, please cite the paper:
 
 ---
 
-## 8. License
+## 6. License
 
-Choose a license (e.g., MIT) to make the repository reusable and reviewer-friendly.
+Choose a permissive license (e.g., MIT) for reproducibility and reuse.
