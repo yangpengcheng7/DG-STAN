@@ -149,8 +149,3 @@ DG-STAN: A Dynamic Graph Spatio-Temporal Attention Network for Traffic Flow Pred
 
 Please choose a permissive license (e.g., MIT or Apache-2.0) to support reproducibility and reuse.
 
-## 9. Notes
-
-Line-ending warnings (LF/CRLF) may appear on Windows; they do not affect correctness.
-
-For large datasets, consider Git LFS or GitHub Releases if pushing fails due to size limits.
