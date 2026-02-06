@@ -112,21 +112,21 @@ The exact CLI arguments depend on the scripts in this repository.
 A typical workflow is:
 
 6.1 Install dependencies
-If requirements.txt is provided:
-pip install -r requirements.txt
+
+```pip install -r requirements.txt```
 Otherwise, ensure PyTorch and common scientific packages are installed.
 
 6.2 Prepare data
 Place datasets under ./data/ (recommended) or configure a custom data path in scripts.
 
 6.3 Train
-python train_dgstan_multi_horizon.py
+```python train_dgstan_multi_horizon.py```
 6.4 Evaluate
-python evaluate_all_current.py
+```python evaluate_all_current.py```
 6.5 Collect results
-python collect_results.py
+```python collect_results.py```
 6.6 Visualize dynamic graph (optional)
-python visualize_dynamic_graph.py
+```python visualize_dynamic_graph.py```
 ## 7. Citation
 
 If you use this repository in academic work, please cite the paper:
