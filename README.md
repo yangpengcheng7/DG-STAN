@@ -84,18 +84,19 @@ DG-STAN/
   ├── staeformer_train.log               # training log (optional)
   └── README.md
 ```
-4. Data Layout
+## 4. Data Layout
 If datasets are included in this repository, we recommend placing them under:
 
-text
+```text
 
 data/
   ├── PeMS04/
   ├── PeMS08/
   └── METR-LA/
+```
 If you store datasets elsewhere, please set the dataset path through script arguments or configuration variables in the training/evaluation scripts.
 
-5. Environment
+## 5. Environment
 Paper-reported environment (for reference):
 
 Python 3.10
@@ -106,7 +107,7 @@ GPU: RTX 3090 (24GB) on Ubuntu 20.04
 
 You may run on other platforms (Windows/Linux) with appropriate dependency adjustments.
 
-6. Quick Start (Reproducibility)
+## 6. Quick Start (Reproducibility)
 The exact CLI arguments depend on the scripts in this repository.
 A typical workflow is:
 
@@ -126,7 +127,7 @@ python evaluate_all_current.py
 python collect_results.py
 6.6 Visualize dynamic graph (optional)
 python visualize_dynamic_graph.py
-7. Citation
+## 7. Citation
 
 If you use this repository in academic work, please cite the paper:
 
@@ -134,11 +135,11 @@ DG-STAN: A Dynamic Graph Spatio-Temporal Attention Network for Traffic Flow Pred
 
 (You can add a BibTeX entry here once the paper has a final venue/DOI.)
 
-8. License
+## 8. License
 
 Please choose a permissive license (e.g., MIT or Apache-2.0) to support reproducibility and reuse.
 
-9. Notes
+## 9. Notes
 
 Line-ending warnings (LF/CRLF) may appear on Windows; they do not affect correctness.
 
